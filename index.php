@@ -1,5 +1,6 @@
 <?php
 require('models/database.php');
+require_once('views/header.php');
 //models\database.php
 $query = 'SELECT * FROM product
             ORDER BY bookID';
@@ -14,6 +15,7 @@ $statement->closeCursor();
 <html>
 
 <table>
+    &nbsp;
     <?php foreach($products as $product) : ?>
         <tr>
             <td><?php echo $product['bookID']; ?></td>
@@ -24,3 +26,4 @@ $statement->closeCursor();
         <?php endforeach; ?>
     </table>
 </html>
+<?php require_once('views/footer.php'); ?>
