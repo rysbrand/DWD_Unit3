@@ -1,7 +1,10 @@
-<?php include 'views/header.php'; ?>
+<?php include 'views/header.php';
+//taking this out so the app actually works
+//require_once('util/secure_conn.php'); ?>
 
 <main>
     <form action="." method="post" >
+        <input type="hidden" name="action" value="register">
         <fieldset>
             <legend>User Information</legend>
 
@@ -22,21 +25,19 @@
 
             <label>Password:</label>
             <input type="password" name="password" 
-               value="<?php echo htmlspecialchars($password);?>">
-            <?php echo $fields->getField('password')->getHTML(); ?><br>
+               value="<?php echo htmlspecialchars($password);?>"><br>
 
             <label>Verify Password:</label>
             <input type="password" name="verify" 
                value="<?php echo htmlspecialchars($verify);?>">
-            <?php echo $fields->getField('verify')->getHTML(); ?><br>
         </fieldset>
         <fieldset>
             <legend>Submit Registration</legend>
 
             <label>&nbsp;</label>
-            <input type="submit" name="action" value="Register"/>
-            <input type ="submit" name="action" value="Reset" /><br>
+            <input type="submit" value="register"/>
+             <button type="reset">Clear Form</button><br>
         </fieldset>
     </form>
 </main>
-<?php include 'views/footer.php';?>
+<?php include './views/footer.php';?>

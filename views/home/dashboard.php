@@ -1,7 +1,5 @@
 <?php
 require('models/database.php');
-//require_once('util/secure_conn.php');
-//require_once('util/valid_admin.php');
 require_once('views/header.php');
 
 $query = 'SELECT * FROM books
@@ -12,15 +10,13 @@ $books = $statement->fetchAll();
 $statement->closeCursor();
 
 ?>
-
-<!DOCTYPE html>
-<html>
-
+<main>
+    <h1>Books in Database</h1>
 <table>
     <th>bookID</th>
     <th>Title</th>
     <th>bookAuthor</th>
-    &nbsp;*/
+    <th>&nbsp;</th>
     <?php foreach($books as $book) : ?>
         <tr>
             <td><?php echo $book['bookID']; ?></td>
@@ -29,5 +25,5 @@ $statement->closeCursor();
         </tr>
         <?php endforeach; ?>
     </table>
-</html>
+
 <?php require_once('views/footer.php'); ?>

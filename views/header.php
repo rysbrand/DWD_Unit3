@@ -1,18 +1,24 @@
+<?php
+if (session_status() === PHP_SESSION_NONE) {
+    session_start();
+}
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <title><?php echo $title ?? 'My DWDUnit3 App'; ?></title>
-    <link rel="stylesheet" href="views/main.css">
+    <link rel="stylesheet" href="main.css">
 </head>
 <body>
 
 <nav>
-    <a href="views/login/login.php">Login</a>
+    <a href="index.php?action=show_login">Login</a>
 
     <?php if (!empty($_SESSION['user_id'])): ?>
-        <a href="/dashboard">Dashboard</a>
-        <a href="/logout">Logout</a>
+        <a href="index.php?action=dashboard">Dashboard</a>
+        <a href="index.php?action=logout">Logout</a>
     <?php endif; ?>
 </nav>
 

@@ -7,7 +7,6 @@
         <li>Email: <?php echo htmlspecialchars($email); ?></li>
         <li>First Name: <?php echo htmlspecialchars($firstName); ?></li>
         <li>Last Name: <?php echo htmlspecialchars($lastName); ?></li>
-        <li>Password: <?php echo htmlspecialchars($password); ?></li>
     </ul>
 </div>
 <?php include 'views/footer.php'; ?>

@@ -53,7 +53,7 @@ class Validate {
         $field = $this->fields->getField($name);
 
         if(!$required && empty($value)) {
-            $field->clearErrorMessage;
+            $field->clearErrorMessage();
             return;
         }
 
@@ -77,7 +77,7 @@ class Validate {
             return;
         }
         if(strlen($domain) > 255) {
-            $field->setErrorMessage('Please enter a vlid email address.');
+            $field->setErrorMessage('Please enter a valid email address.');
             return;
         }
 
@@ -152,7 +152,7 @@ class Validate {
 
     public function verify($name, $password, $verify, $required = false) {
         $field = $this->fields->getField($name);
-        $this->text($name, $verify, $required, 6);
+        $this->text($name, $verify, $required, 8);
         if ($field->hasError()) { return; }
 
         if (strcmp($password, $verify) != 0) {
