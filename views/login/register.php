@@ -1,4 +1,4 @@
-<?php include 'header.php'; ?>
+<?php include 'views/header.php'; ?>
 
 <main>
     <form action="." method="post" >
@@ -7,12 +7,12 @@
 
             <label>First Name:</label>
             <input type="text" name="first_name"
-                value="<?php echo htmlspecialchars($first_name);?>">
+                value="<?php echo htmlspecialchars($firstName);?>">
             <?php echo $fields->getField('first_name')->getHTML(); ?><br>
             
             <label>Last Name:</label>
             <input type="text" name="last_name"
-                value="<?php echo htmlspecialchars($last_name);?>">
+                value="<?php echo htmlspecialchars($lastName);?>">
             <?php echo $fields->getField('last_name')->getHTML(); ?><br>
 
             <label>E-mail:</label>
@@ -29,4 +29,4 @@
         </fieldset>
     </form>
 </main>
-<?php include 'footer.php';?>
+<?php include 'views/footer.php';?>

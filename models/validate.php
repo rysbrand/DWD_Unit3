@@ -2,7 +2,7 @@
 class Validate {
     private $fields;
 
-    public function _construct() {
+    public function __construct() {
         $this->fields = new Fields();
     }
 
@@ -29,7 +29,7 @@ class Validate {
         }
     }
 
-    public function pattern($name, $value, $pattern, $message, $required = true;) {
+    public function pattern($name, $value, $pattern, $message, $required = true) {
         $field = $this->fields->getField($name);
 
         if(!$required && empty($value)) {

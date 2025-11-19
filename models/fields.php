@@ -4,7 +4,7 @@ class Field {
     private $message = '';
     private $hasError = false;
 
-    public function _construct($name, $message = '') {
+    public function __construct($name, $message = '') {
         $this->name = $name;
         $this->message = $message;
     }
@@ -32,8 +32,9 @@ class Field {
             return '<span>' . $message . '</span>';
         }
     }
+}
 
-    class Fields {
+class Fields {
         private $fields = array();
 
         public function addField($name, $message = '') {
@@ -52,5 +53,4 @@ class Field {
             return false;
         }
     }
-}
 ?>

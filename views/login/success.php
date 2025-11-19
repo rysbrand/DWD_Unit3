@@ -1,4 +1,4 @@
-<?php include 'header.php'; ?>
+<?php include '<views>header.php'; ?>
 <main>
     <h2>Success</h2>
     <p>The following registration information has been successfully
@@ -9,4 +9,4 @@
         <li>Last Name: <?php echo htmlspecialchars($lastName); ?></li>
     </ul>
 </div>
-<?php include 'footer.php'; ?>
+<?php include 'views/footer.php'; ?>

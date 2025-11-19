@@ -1,38 +1,7 @@
-<!-- </*?php
-require('models/database.php');
-require_once('views/header.php');
-//models\database.php
-$query = 'SELECT * FROM books
-            ORDER BY bookID';
-$statement = $db->prepare($query);
-$statement->execute();
-$books = $statement->fetchAll();
-$statement->closeCursor();
-
-?>
-
-<!DOCTYPE html>
-<html>
-
-<table>
-    <th>bookID</th>
-    <th>Title</th>
-    <th>bookAuthor</th>
-    &nbsp;*/
-    </*?php foreach($books as $book) : ?>
-        <tr>
-            <td></*?php echo $book['bookID']; ?></td>
-            <td></*?php echo $book['bookName']; ?></td>
-            <td></*?php echo $book['bookAuthor']; ?></td>
-        </tr>
-        </*?php endforeach; ?>
-    </table>
-</html>
-</*?php require_once('views/footer.php'); ?*/> -->
-
 <?php
-require_once('model/fields.php');
-require_once('model/validate.php');
+require_once('models/fields.php');
+require_once('models/validate.php');
+
 
 $validate = new Validate();
 $fields = $validate->getFields();
@@ -57,7 +26,7 @@ switch ($action) {
         $firstName = '';
         $lastName = '';
         
-        include 'view/register.php';
+        include 'views/login/register.php';
         break;
     case 'register':
         // Copy form values to local variables
