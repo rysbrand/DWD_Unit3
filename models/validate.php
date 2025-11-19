@@ -109,6 +109,55 @@ class Validate {
         $this->pattern($name, $domain, $domainPattern,
                 'Invalid domain name part.');
     }
+        
+        //password validation stuff
+        public function password($name, $password, $required = false) {
+        $field = $this->fields->getField($name);
 
-    
+        if (!$required && empty($password)) {
+            $field->clearErrorMessage();
+            return;
+        }
+
+        $this->text($name, $password, $required, 8);
+        if ($field->hasError()) { return; }
+
+        // Patterns to validate password
+        $charClasses = array();
+        //$charClasses[] = '[:digit:]';
+        $charClasses[] = '[:upper:]';
+        $charClasses[] = '[:lower:]';
+        //$charClasses[] = '_-';
+
+        $pw = '/^';
+        $valid = '[';
+        foreach($charClasses as $charClass) {
+            $pw .= '(?=.*[' . $charClass . '])';
+            $valid .= $charClass;
+        }
+        $valid .= ']{8,}';
+        $pw .= $valid . '$/';
+
+        $pwMatch = preg_match($pw, $password);
+
+        if ($pwMatch === false) {
+            $field->setErrorMessage('Error testing password.');
+            return;
+        } else if ($pwMatch != 1) {
+            $field->setErrorMessage(
+                    'Must have one each of upper, digit.');
+            return;
+        }
+    }
+
+    public function verify($name, $password, $verify, $required = false) {
+        $field = $this->fields->getField($name);
+        $this->text($name, $verify, $required, 6);
+        if ($field->hasError()) { return; }
+
+        if (strcmp($password, $verify) != 0) {
+            $field->setErrorMessage('Passwords do not match.');
+            return;
+        }
+    }
 }

@@ -8,7 +8,7 @@
 <body>
 
 <nav>
-    <a href="/login">Login</a>
+    <a href="views/login/login.php">Login</a>
 
     <?php if (!empty($_SESSION['user_id'])): ?>
         <a href="/dashboard">Dashboard</a>

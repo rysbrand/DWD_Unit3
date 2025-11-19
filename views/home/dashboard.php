@@ -1,5 +1,7 @@
 <?php
 require('models/database.php');
+//require_once('util/secure_conn.php');
+//require_once('util/valid_admin.php');
 require_once('views/header.php');
 
 $query = 'SELECT * FROM books

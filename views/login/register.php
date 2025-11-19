@@ -19,12 +19,22 @@
             <input type="text" name="email"
                 value="<?php echo htmlspecialchars($email);?>">
             <?php echo $fields->getField('email')->getHTML(); ?><br>
+
+            <label>Password:</label>
+            <input type="password" name="password" 
+               value="<?php echo htmlspecialchars($password);?>">
+            <?php echo $fields->getField('password')->getHTML(); ?><br>
+
+            <label>Verify Password:</label>
+            <input type="password" name="verify" 
+               value="<?php echo htmlspecialchars($verify);?>">
+            <?php echo $fields->getField('verify')->getHTML(); ?><br>
         </fieldset>
         <fieldset>
             <legend>Submit Registration</legend>
 
             <label>&nbsp;</label>
-            <input type="submit" name="action" valude="Register"/>
+            <input type="submit" name="action" value="Register"/>
             <input type ="submit" name="action" value="Reset" /><br>
         </fieldset>
     </form>
