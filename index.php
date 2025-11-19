@@ -1,6 +1,13 @@
 <?php
+
+session_start();
+require_once('models/datebase.php');
 require_once('models/fields.php');
 require_once('models/validate.php');
+
+if (!isset($_SESSION['is_valid_admin'])) {
+    $action = 'login';
+}
 
 
 $validate = new Validate();
@@ -19,7 +26,18 @@ if ($action === NULL) {
 }
 
 switch ($action) {
-    case 'reset':
+    case 'login':
+        $email = filter_input(INPUT_POST, 'email');
+        $password = filter_input(INPUT_POST, 'password');
+        if (is_valid_admin_login($email, $password)) {
+            $_SESSION['is_valid_admin'] = true;
+            include('view/admin_menu.php');
+        } else {
+            $login_message = 'You must login to view this page.';
+            include('view/login.php');
+        }
+        break;
+    case 'Reset':
         $email = '';
         $password = '';
         $verify = '';
@@ -28,7 +46,7 @@ switch ($action) {
         
         include 'views/login/register.php';
         break;
-    case 'register':
+    case 'Register':
         // Copy form values to local variables
         $email = trim(filter_input(INPUT_POST, 'email'));
         $password = filter_input(INPUT_POST, 'password');
@@ -42,6 +60,12 @@ switch ($action) {
         $validate->verify('verify', $password, $verify);
         $validate->text('first_name', $firstName);
         $validate->text('last_name', $lastName);
+    case 'logout':
+        $_SESSION = array();   // Clear all session data from memory
+        session_destroy();     // Clean up the session ID
+        $login_message = 'You have been logged out.';
+        include('view/login.php');
+        break;
 
 
         // Load appropriate view based on hasErrors

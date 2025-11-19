@@ -1,8 +1,6 @@
 <?php
-require_once('models/database.php');
-require_once('models/admin_db.php');
-
-if(!isset($_SESSION['is_valid_admin'])) {
-    header("Location: ." );
-}
+    // make sure the user is logged in as a valid user
+    if (!isset($_SESSION['is_valid_admin'])) {
+        header("Location: ." );
+    }
 ?>

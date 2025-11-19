@@ -1,12 +1,16 @@
 <?php
-//$host = 'localhost';
+
 $dsn = 'mysql:host=localhost;dbname=dwd_unit3db';
 $username = 'mgs_user';
 $password = 'pa55word';
-//$hash = password_hash($password, PASSWORD_DEFAULT);
-$database = 'dwd_unit3db';
-
-$db = new PDO($dsn, $username, $password);//, $database);
+$options = array(PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION);
+try {
+    $db = new PDO($dsn, $username, $password, $options);
+} catch (PDOException $e) {
+    $error = $e->getMessage();
+    include('view/error.php');
+    exit();
+}
 
 // $error_message = $db->connect_error;
 // if($error_message != null) {

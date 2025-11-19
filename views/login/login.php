@@ -2,29 +2,27 @@
 require_once('../util/secure_conn.php');
 ?>
 <main>
-    <form action="." method="post" >
+    <form action="." method="post" id="login_form" class="aligned">
         <fieldset>
-            <legend>Login</legend>
+        <main>
+            <h1>Login</h1>
 
-            <label>E-mail:</label>
-            <input type="text" name="email"
-                value="<?php echo htmlspecialchars($email);?>">
-            <?php echo $fields->getField('email')->getHTML(); ?><br>
+            <form action="." method="post" id="login_form" class="aligned">
+                <input type="hidden" name="action" value="login">
 
-            <label>Password:</label>
-            <input type="password" name="password" 
-               value="<?php echo htmlspecialchars($password);?>">
-            <?php echo $fields->getField('password')->getHTML(); ?><br>
+                <label>Email:</label>
+                <input type="text" class="text" name="email">
+                <br>
 
-        </fieldset>
-        <fieldset>
-            <legend>Enter</legend>
+                <label>Password:</label>
+                <input type="password" class="text" name="password">
+                <br>
 
-            <label>&nbsp;</label>
-            <input type="submit" name="action" value="Login"/>
-            <input type ="submit" name="action" value="Reset" /><br>
-        </fieldset>
+                <label>&nbsp;</label>
+                <input type="submit" value="Login">
     </form>
+
+    <p><?php echo $login_message; ?></p>
 </main>
 
 <?php include 'footer.php' ?>
