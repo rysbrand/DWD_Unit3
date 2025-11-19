@@ -49,7 +49,7 @@ switch ($action) {
             $user = get_user_by_email($email);
 
             $_SESSION['user_id'] = $user['userID'];
-            $_SESSION['user_email'] = $email['emailAddress'];
+            $_SESSION['user_email'] = $email;
 
             include 'views/home/dashboard.php';
         } else {
@@ -110,6 +110,58 @@ switch ($action) {
         session_destroy();     // Clean up the session ID
         $login_message = 'You have been logged out.';
         include('views/login/login.php');
+        break;
+
+    case 'show_account':
+
+        if (empty($_SESSION['user_id'])) {
+            $login_message = 'Please login first.';
+            include 'views/login/login.php';
+            break;
+        }
+
+        $userID = $_SESSION['user_id'];
+        $user = get_user_by_id($userID);
+
+        if (!$user) {
+            $login_message = 'User record not found.';
+            include 'views/login/login.php';
+            break;
+        }
+
+        $firstName = $user['firstName'] ?? '';
+        $lastName  = $user['lastName'] ?? '';
+        $email     = $user['emailAddress'] ?? '';
+
+        include 'views/accounts/account.php';
+        break;
+
+    case 'update_account':
+
+        if (empty($_SESSION['user_id'])) {
+            $login_message = 'Please login first.';
+            include 'views/login/login.php';
+            break;
+        }
+
+        $userID    = $_SESSION['user_id'];
+        $firstName = filter_input(INPUT_POST, 'first_name');
+        $lastName  = filter_input(INPUT_POST, 'last_name');
+        $email     = filter_input(INPUT_POST, 'email');
+
+        $validate->email('email', $email);
+        $validate->text('first_name', $firstName);
+        $validate->text('last_name', $lastName);
+        
+        if ($fields->hasErrors()) {
+            
+            include 'views/account/account.php';
+            break;
+        }
+
+        update_user($userID, $email, $firstName, $lastName);
+        $_SESSION['user_email'] = $email;
+        include 'views/accounts/account.php';
         break;
     }
 ?>

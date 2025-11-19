@@ -17,7 +17,8 @@ if (session_status() === PHP_SESSION_NONE) {
     <a href="index.php?action=show_login">Login</a>
 
     <?php if (!empty($_SESSION['user_id'])): ?>
-        <a href="index.php?action=dashboard">Dashboard</a>
+        <a href="index.php?action=show_dashboard">Dashboard</a>
+        <a href="index.php?action=show_account">My Account</a>
         <a href="index.php?action=logout">Logout</a>
     <?php endif; ?>
 </nav>
